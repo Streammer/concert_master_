@@ -1,5 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import { useMovieStore } from "./stores/movies_store";
+const movieStore = useMovieStore();
 </script>
 
 <template>
