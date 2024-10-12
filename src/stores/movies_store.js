@@ -17,4 +17,5 @@ export const useMovieStore = defineStore("movieStore", () => {
     setMovies,
     searchResult
   };
+  
 });

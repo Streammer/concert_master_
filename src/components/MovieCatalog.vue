@@ -13,7 +13,7 @@ const movies = movieStore.searchResult;
 <style scoped>
 .movie-catalog {
     display: grid;
-    grid-template-columns:repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 1rem;
 }
 </style>
