@@ -9,5 +9,6 @@ export const useMovieStore = defineStore("movieStore", () => {
 
   return {
     movies,
+    setMovies
   };
 });
