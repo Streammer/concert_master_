@@ -30,6 +30,7 @@ const props = defineProps({
         object-fit: cover;
         border-radius: .5rem;
         margin-bottom: 1rem;
+        width: 100%;
     }
 
     &__info {

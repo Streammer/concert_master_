@@ -5,6 +5,7 @@
                 :class="{ 'error': isError }">
             <span v-if="isError" class="search__error">{{ error }}</span>
         </form>
+        <button @click="clear" class="search__button">Clear</button>
     </div>
 </template>
 <script setup>
@@ -12,6 +13,10 @@ import { ref } from "vue";
 import { useMovieStore } from "../../stores/movies_store";
 
 const movieStore = useMovieStore();
+const clear = ()=> {
+    movieStore.clearMovies();
+    searchString.value = "";
+}
 
 const searchString = ref('')
 const error = ref('')
@@ -33,7 +38,8 @@ const clearError = () => {
 <style lang="scss" scoped>
 .search {
     width: 50%;
-
+    display: flex;
+    justify-content: space-between;
     &__input {
         width: 100%;
         height: 100%;
@@ -59,6 +65,7 @@ const clearError = () => {
 
     &__form {
         position: relative;
+        flex-grow: 1;
     }
 
     &__error {
@@ -68,6 +75,15 @@ const clearError = () => {
         color: red;
         font-size: 1.5rem;
         font-weight: 700;
+    }
+    &__button {
+        border: none;
+        outline: none;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        font-size: 1.6rem;
+        min-height: 3rem;
+        margin-left: 2rem;
     }
 }
 </style>

@@ -5,14 +5,14 @@ import axios from 'axios';
 export const useMovieStore = defineStore("movieStore", () => {
   const movies = ref([]);
   const loader = ref(false);
-  const total = ref(0)
+  const total = ref(0);
+  const searchValue = ref('');
 
   const baseUrl = import.meta.env.VITE_PUBLIC_BASE_API_URL;
   const apiKey = import.meta.env.VITE_PRIVATE_API_KEY;
 
   const getMovies = async (searchString) => {
     loader.value = true;
-    console.log(searchString);
     await axios.get(baseUrl, {
       params: {
         apikey: apiKey,
@@ -21,7 +21,7 @@ export const useMovieStore = defineStore("movieStore", () => {
       }
     })
       .then(response => {
-        console.log(response.data);
+        searchValue.value = searchString
         total.value = response.data.totalResults;
         movies.value = response.data;
         loader.value = false;
@@ -36,6 +36,12 @@ export const useMovieStore = defineStore("movieStore", () => {
     return movies.value.Search
   })
 
+  const clearMovies = () => {
+    movies.value = [];
+    total.value = 0;
+    searchValue.value = '';
+  }
+
   const setMovies = (data) => {
     movies.value = data;
   }
@@ -44,6 +50,10 @@ export const useMovieStore = defineStore("movieStore", () => {
     setMovies,
     searchResult,
     getMovies,
+    searchValue,
+    total,
+    loader,
+    clearMovies
   };
 
 });
