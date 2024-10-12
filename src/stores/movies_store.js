@@ -23,7 +23,6 @@ export const useMovieStore = defineStore("movieStore", () => {
     })
       .then(response => {
         loader.value = false;
-        console.log(response.data)
         if(response.data && response.data.Error && response.data.Response === 'False') {
           notFound.value = response.data.Error
         }
