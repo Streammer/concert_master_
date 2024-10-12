@@ -1,11 +1,9 @@
 <template>
-  <div>
+  <div class="app-container">
     <Container>
       <Header/>
     </Container>
-    <Container>
       <Main/>
-    </Container>
   </div>
 </template>
 
@@ -36,4 +34,10 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+</style>
