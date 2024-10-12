@@ -16,10 +16,18 @@ import Header from './components/Header.vue';
 import Main from './components/Main.vue';
 
 const baseUrl = import.meta.env.VITE_PUBLIC_BASE_API_URL;
+const apiKey = import.meta.env.VITE_PRIVATE_API_KEY;
+
 const movieStore = useMovieStore();
 
 const getMovies = async () => {
-  await axios.get(baseUrl)
+  await axios.get(baseUrl, {
+    params: {
+      apikey: apiKey,
+      page: 1,
+      s:'Batman'
+    }
+  })
     .then(response => {
       console.log(response.data);
       movieStore.movies = response.data;
