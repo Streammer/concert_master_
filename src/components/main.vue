@@ -5,7 +5,7 @@
                 <div class="main__title" v-if="searchValue && total">
                     <h2>Your are searched for: {{ searchValue }}, {{ total }} results found.</h2>
                 </div>
-                <div class="main__title" v-if="notFound && notFound.length">
+                <div class="main__title" v-else-if="notFound && notFound.length">
                     <h2>{{notFound}}</h2>
                 </div>
                 <div class="main__title" v-else>

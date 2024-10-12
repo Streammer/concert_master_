@@ -82,6 +82,7 @@ const clearError = () => {
         border-radius: .5rem;
         padding: .5rem 1rem;
         font-size: 1.6rem;
+        font-weight: 700;
         min-height: 3rem;
         margin-left: 2rem;
     }
