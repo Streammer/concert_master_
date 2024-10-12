@@ -7,8 +7,8 @@
   </script>
   <style scoped>
     .container {
-        width: 100%;
         max-width: 1420px;
+        width: 100%;
         margin: 0 auto;
         position: relative;
         padding: 0 1rem;

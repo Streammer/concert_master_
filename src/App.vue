@@ -1,5 +1,11 @@
 <template>
   <div>
+    <Container>
+      <Header/>
+    </Container>
+    <Container>
+      <Main/>
+    </Container>
   </div>
 </template>
 
@@ -7,6 +13,9 @@
 import axios from 'axios';
 import { useMovieStore } from "./stores/movies_store";
 import { ref, onMounted } from 'vue';
+import Container from './components/elements/Container.vue';
+import Header from './components/Header.vue';
+import Main from './components/Main.vue';
 
 const baseUrl = import.meta.env.VITE_PUBLIC_BASE_API_URL;
 const movieStore = useMovieStore();
