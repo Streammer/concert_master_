@@ -15,6 +15,7 @@ import { useMovieStore } from "../../stores/movies_store";
 const movieStore = useMovieStore();
 const clear = ()=> {
     movieStore.clearMovies();
+    movieStore.changePage(1);
     searchString.value = "";
 }
 
@@ -28,6 +29,7 @@ const searchMovie = () => {
         error.value = ('Please enter a movie name');
         return;
     }
+    movieStore.changePage(1);
     movieStore.getMovies(searchString.value);
 }
 const clearError = () => {

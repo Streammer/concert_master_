@@ -2,9 +2,7 @@
     <div class="movie-catalog">
         <Movie v-for="item in searchResult" :key="item.imdbID" :item="item" />
     </div>
-    <!-- <Pagination v-if="total" :total="Number(total)"/> -->
-    <!-- <Pagination v-if="total" /> -->
-    <Pagination v-if="total" @update:page="handlePageUpdate" />
+    <Pagination v-if="total" />
 </template>
 <script setup>
 import { computed } from "vue";
@@ -15,9 +13,7 @@ import Pagination from './elements/Pagination.vue';
 const movieStore = useMovieStore();
 const searchResult = computed(() => movieStore.searchResult);
 const total = computed(() => movieStore.total);
-const handlePageUpdate = (page) => {
-    console.log('Current page:', page);
-};
+
 </script>
 <style scoped>
 .movie-catalog {

@@ -1,9 +1,5 @@
 <template>
     <div class="pagination">
-        <!-- <div class="pagination__items">
-            <div v-for="item in paginatedData" :key="item.index">{{ item.value }}</div>
-        </div>    -->
-       
         <div class="pagination__buttons">
             <button @click="handlePrevPage" :disabled="isFirstPage" class="pagination__button-prev">prev</button>
             <button 
@@ -22,12 +18,14 @@
 </template>
 
 <script setup>
-import { computed, defineEmits } from "vue";
+import { computed } from "vue";
 import handlePagination from "../../composables/handlePagination";
+import { useMovieStore } from "../../stores/movies_store";
 
-const emit = defineEmits(['update:page']);
+const movieStore = useMovieStore();
+const page = computed(() => movieStore.page);
 
-const { data, perPage, page, nextPage, backPage, goToPage } = handlePagination();
+const { data, perPage, nextPage, backPage, goToPage } = handlePagination();
 
 const totalPages = computed(() => Math.ceil(data.length / perPage));
 const showDots = computed(() => totalPages.value > 10);
@@ -53,21 +51,18 @@ const visiblePages = computed(() => {
 const handlePageClick = (item) => {
     if (item !== '...') {
         goToPage(item);
-        emit('update:page', item);
     }
 };
 
 const handlePrevPage = () => {
     if (!isFirstPage.value) {
         backPage();
-        emit('update:page', page.value);
     }
 };
 
 const handleNextPage = () => {
     if (!isLastPage.value) {
         nextPage();
-        emit('update:page', page.value);
     }
 };
 </script>

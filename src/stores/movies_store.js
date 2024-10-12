@@ -1,5 +1,5 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import axios from 'axios';
 
 export const useMovieStore = defineStore("movieStore", () => {
@@ -8,6 +8,7 @@ export const useMovieStore = defineStore("movieStore", () => {
   const total = ref(0);
   const searchValue = ref('');
   const notFound = ref('');
+  const page = ref(1);
 
   const baseUrl = import.meta.env.VITE_PUBLIC_BASE_API_URL;
   const apiKey = import.meta.env.VITE_PRIVATE_API_KEY;
@@ -17,7 +18,7 @@ export const useMovieStore = defineStore("movieStore", () => {
     await axios.get(baseUrl, {
       params: {
         apikey: apiKey,
-        page: 1,
+        page: page.value,
         s:searchString
       }
     })
@@ -48,9 +49,23 @@ export const useMovieStore = defineStore("movieStore", () => {
     notFound.value = '';
   }
 
+  const changePage = (data) => {
+    page.value = data
+  }
+
   const setMovies = (data) => {
     movies.value = data;
   }
+
+  watch(
+    () => page.value,
+    () => {
+      if(searchValue.value && searchValue.value.length > 0) {
+        getMovies(searchValue.value);
+      }
+    }
+  );
+
   return {
     movies,
     setMovies,
@@ -60,7 +75,9 @@ export const useMovieStore = defineStore("movieStore", () => {
     total,
     loader,
     clearMovies,
-    notFound
+    notFound,
+    page,
+    changePage
   };
 
 });
