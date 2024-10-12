@@ -7,6 +7,7 @@ export const useMovieStore = defineStore("movieStore", () => {
   const loader = ref(false);
   const total = ref(0);
   const searchValue = ref('');
+  const notFound = ref('');
 
   const baseUrl = import.meta.env.VITE_PUBLIC_BASE_API_URL;
   const apiKey = import.meta.env.VITE_PRIVATE_API_KEY;
@@ -21,10 +22,15 @@ export const useMovieStore = defineStore("movieStore", () => {
       }
     })
       .then(response => {
+        loader.value = false;
+        console.log(response.data)
+        if(response.data && response.data.Error && response.data.Response === 'False') {
+          notFound.value = response.data.Error
+        }
         searchValue.value = searchString
         total.value = response.data.totalResults;
         movies.value = response.data;
-        loader.value = false;
+        
       })
       .catch(error => {
         loader.value = false;
@@ -40,6 +46,7 @@ export const useMovieStore = defineStore("movieStore", () => {
     movies.value = [];
     total.value = 0;
     searchValue.value = '';
+    notFound.value = '';
   }
 
   const setMovies = (data) => {
@@ -53,7 +60,8 @@ export const useMovieStore = defineStore("movieStore", () => {
     searchValue,
     total,
     loader,
-    clearMovies
+    clearMovies,
+    notFound
   };
 
 });
