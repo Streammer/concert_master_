@@ -9,15 +9,21 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { useMovieStore } from "../../stores/movies_store";
+
+const movieStore = useMovieStore();
+
 const searchString = ref('')
 const error = ref('')
 const isError = ref(false)
+
 const searchMovie = () => {
     if (searchString.value.length <= 0 || searchString.value.trim() === '') {
         isError.value = true;
         error.value = ('Please enter a movie name');
+        return;
     }
-    console.log(searchString.value);
+    movieStore.getMovies(searchString.value);
 }
 const clearError = () => {
     isError.value = false;

@@ -1,7 +1,6 @@
 <template>
     <div class="movie">
-        <img :src="item.Poster ? item.Poster : '../../assets/images/no-image.png'" alt="Movie Image"
-            class="movie__image">
+        <img :src="item.Poster && item.Poster !== 'N/A' ? item.Poster : '/no-image.png'" alt="Movie Image" class="movie__image">
         <div class="movie__info">
             <p><span class="text-bold">Name:</span> {{ item.Title }}</p>
             <p><span class="text-bold">Year:</span> {{ item.Year }}</p>
