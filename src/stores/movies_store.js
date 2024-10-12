@@ -23,7 +23,6 @@ export const useMovieStore = defineStore("movieStore", () => {
       .then(response => {
         console.log(response.data);
         total.value = response.data.totalResults;
-        localStorage.setItem("movieStore", JSON.stringify(response.data.Search));
         movies.value = response.data;
         loader.value = false;
       })
