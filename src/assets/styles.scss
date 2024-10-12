@@ -1,0 +1,31 @@
+@import "optimize";
+
+
+*,
+*:before,
+*:after  {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+body,
+html {
+  width: 100%;
+  font-size: 62.5%;
+  &.noskroll {
+    overflow: hidden;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
