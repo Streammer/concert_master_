@@ -6,7 +6,7 @@
                     <h2>Your are searched for: {{ searchValue }}, {{ total }} results found.</h2>
                 </div>
                 <div class="main__title" v-else-if="notFound && notFound.length">
-                    <h2>{{notFound}}</h2>
+                    <h2>{{ notFound }}</h2>
                 </div>
                 <div class="main__title" v-else>
                     <h2>Enter the movie title in the input field to get a list of movies.</h2>
@@ -35,16 +35,22 @@ const notFound = computed(() => movieStore.notFound);
 <style lang="scss" scoped>
 .main {
     height: 100%;
+
     &__wrapper {
         padding: 2.5rem 3rem;
         display: flex;
         flex-direction: column;
         gap: 3rem;
+        height: 100%;
     }
 
     &__title {
         font-size: 1.8rem;
         font-weight: 700;
+    }
+
+    .container {
+        height: 100%;
     }
 }
 </style>

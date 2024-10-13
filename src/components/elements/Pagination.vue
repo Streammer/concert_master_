@@ -2,16 +2,13 @@
     <div class="pagination">
         <div class="pagination__buttons">
             <button @click="handlePrevPage" :disabled="isFirstPage" class="pagination__button-prev">prev</button>
-            <button 
-                v-for="item in visiblePages" 
-                :key="item" 
-                @click="() => handlePageClick(item)"
-                :class="['pagination__button', { active: item === page }]"
-                :disabled="item === page"
-            >
-                {{ item }}
-            </button>
-            <button v-if="showDots" disabled class="pagination__button">...</button>
+            <div class="pagination__pages">
+                <button v-for="item in visiblePages" :key="item" @click="() => handlePageClick(item)"
+                    :class="['pagination__button', { active: item === page }]" :disabled="item === page">
+                    {{ item }}
+                </button>
+                <button v-if="showDots" disabled class="pagination__button">...</button>
+            </div>
             <button @click="handleNextPage" :disabled="isLastPage" class="pagination__button-next">next</button>
         </div>
     </div>
@@ -34,14 +31,14 @@ const isFirstPage = computed(() => page.value === 1);
 const isLastPage = computed(() => page.value === totalPages.value);
 
 const visiblePages = computed(() => {
-    if (totalPages.value <= 10) {
+    if (totalPages.value <= 7) {
         return Array.from({ length: totalPages.value }, (_, i) => i + 1);
     } else {
         const currentPage = page.value;
-        if (currentPage <= 6) {
-            return [...Array.from({ length: 7 }, (_, i) => i + 1), '...', totalPages.value];
-        } else if (currentPage >= totalPages.value - 5) {
-            return [1, '...', ...Array.from({ length: 7 }, (_, i) => totalPages.value - 6 + i)];
+        if (currentPage <= 4) {
+            return [...Array.from({ length: 5 }, (_, i) => i + 1), '...', totalPages.value];
+        } else if (currentPage >= totalPages.value - 3) {
+            return [1, '...', ...Array.from({ length: 5 }, (_, i) => totalPages.value - 4 + i)];
         } else {
             return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages.value];
         }
@@ -69,6 +66,9 @@ const handleNextPage = () => {
 
 <style lang="scss" scoped>
 .pagination {
+    margin-top: auto;
+    padding-bottom: 2rem;
+
     &__buttons {
         margin: 0 auto;
         width: max-content;
@@ -76,6 +76,7 @@ const handleNextPage = () => {
         gap: 1rem;
         font-size: 1.6rem;
     }
+
     &__items {
         margin: 0 auto;
         width: max-content;
@@ -84,6 +85,7 @@ const handleNextPage = () => {
         font-size: 1.6rem;
         margin-bottom: 2rem;
     }
+
     &__button,
     &__button-prev,
     &__button-next {
@@ -92,11 +94,13 @@ const handleNextPage = () => {
         background-color: transparent;
         padding: 0.5rem;
     }
+
     &__button.active {
         background-color: lightblue;
         color: white;
         border-radius: .3rem;
     }
+
     &__button-prev:disabled,
     &__button-next:disabled {
         opacity: 0.5;

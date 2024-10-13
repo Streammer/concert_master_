@@ -72,7 +72,7 @@ const clearError = () => {
 
     &__error {
         position: absolute;
-        bottom: -55%;
+        top: 109%;
         left: 2%;
         color: red;
         font-size: 1.5rem;
@@ -87,6 +87,14 @@ const clearError = () => {
         font-weight: 700;
         min-height: 3rem;
         margin-left: 2rem;
+    }
+}
+@media (max-width: 576px) {
+    .search {
+        width: max-content;
+        &__error {
+            font-size: 1.2rem;
+        }
     }
 }
 </style>

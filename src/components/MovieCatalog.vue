@@ -2,7 +2,7 @@
     <div class="movie-catalog">
         <Movie v-for="item in searchResult" :key="item.imdbID" :item="item" />
     </div>
-    <Pagination v-if="total" />
+    <Pagination v-if="total && total > 1" />
 </template>
 <script setup>
 import { computed } from "vue";

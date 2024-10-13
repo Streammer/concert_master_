@@ -13,6 +13,7 @@
     align-items: center;
     font-size: 1.5rem;
     width: max-content;
+    margin-left: 1rem;
     &__image {
         max-width: 3rem;
         max-height: 3rem;
@@ -22,6 +23,13 @@
         white-space: nowrap;
         font-weight: 700;
         margin-left: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    .profile {
+        &__name {
+            display: none;
+        }
     }
 } 
 </style>

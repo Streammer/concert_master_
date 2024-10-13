@@ -27,5 +27,12 @@ import Profile from './elements/Profile.vue';
         font-size: 2rem;
         width: max-content;
     }
- }
+}
+@media (max-width: 576px) {
+    .header {
+        &__title {
+            display:none;
+        }
+    }
+}
 </style>
