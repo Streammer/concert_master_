@@ -29,6 +29,7 @@ const searchMovie = () => {
         error.value = ('Please enter a movie name');
         return;
     }
+    movieStore.clearMovies();
     movieStore.changePage(1);
     movieStore.getMovies(searchString.value);
 }
