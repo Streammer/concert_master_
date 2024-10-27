@@ -25,12 +25,15 @@ const props = defineProps({
     min-height: 15rem;
     font-size: 1.6rem;
     border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
 
     &__image {
         object-fit: cover;
         border-radius: .5rem;
         margin-bottom: 1rem;
         width: 100%;
+        max-height: 29.8rem;
     }
 
     &__info {
@@ -38,6 +41,7 @@ const props = defineProps({
         flex-direction: column;
         gap: 1rem;
         padding: 0 1rem;
+        margin-top: auto;
     }
 }
 </style>

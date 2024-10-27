@@ -5,14 +5,13 @@
     <Pagination v-if="total && total > 1" />
 </template>
 <script setup>
-import { computed } from "vue";
 import { useMovieStore } from "../stores/movies_store";
 import Movie from './Movie.vue';
+import { storeToRefs } from 'pinia';
 import Pagination from './elements/Pagination.vue';
 
-const movieStore = useMovieStore();
-const searchResult = computed(() => movieStore.searchResult);
-const total = computed(() => movieStore.total);
+const movieStore = useMovieStore();;
+const { searchResult, total } = storeToRefs(movieStore);
 
 </script>
 <style scoped>
