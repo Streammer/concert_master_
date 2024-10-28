@@ -18,11 +18,15 @@
 import { computed } from "vue";
 import handlePagination from "../../composables/handlePagination";
 import { useMovieStore } from "../../stores/movies_store";
+import { storeToRefs } from 'pinia';
 
 const movieStore = useMovieStore();
-const page = computed(() => movieStore.page);
+const {total, page} = storeToRefs(movieStore);
+const changePage = (data) => {
+        movieStore.changePage(data);
+    };
 
-const { data, perPage, nextPage, backPage, goToPage } = handlePagination();
+const { data, perPage, nextPage, backPage, goToPage } = handlePagination(total.value, page.value, changePage);
 
 const totalPages = computed(() => Math.ceil(data.length / perPage));
 const showDots = computed(() => totalPages.value > 10);

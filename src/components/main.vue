@@ -21,15 +21,18 @@
 import Container from './elements/Container.vue';
 import MovieCatalog from './MovieCatalog.vue';
 import Loader from './elements/Loader.vue';
+import { storeToRefs } from 'pinia';
 
 import { useMovieStore } from "../stores/movies_store";
-import { computed } from "vue";
+// import { computed } from "vue";
 
 const movieStore = useMovieStore();
-const searchValue = computed(() => movieStore.searchValue);
-const total = computed(() => movieStore.total);
-const loader = computed(() => movieStore.loader);
-const notFound = computed(() => movieStore.notFound);
+// const searchValue = computed(() => movieStore.searchValue);
+// const total = computed(() => movieStore.total);
+// const loader = computed(() => movieStore.loader);
+// const notFound = computed(() => movieStore.notFound);
+
+const {searchValue, total, loader, notFound } = storeToRefs(movieStore);
 
 </script>
 <style lang="scss" scoped>
